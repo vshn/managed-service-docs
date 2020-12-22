@@ -40,7 +40,6 @@ At this point BURP can backup the data files from the snapshot. When that's done
 
 Restoring from a snapshot is simple, all you need to do is stop your service, empty its data directory, and do a normal BURP file restore of `/var/lib/lvm-snapshots/your-service-data` into your services's data directory.
 
-+
 [source,bash]
 --
 $ rm -r /your/service/data/*
