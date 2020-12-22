@@ -1,0 +1,1 @@
+* xref:managed-service:ROOT:references/crds-html.adoc[CRDs]

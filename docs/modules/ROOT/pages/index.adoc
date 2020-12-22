@@ -1,0 +1,47 @@
+= VSHN Knowledge Base
+
+image::vshn_logo.png[]
+
+Welcome to VSHN's Knowledge Base.
+
+Here you'll find all the technical documentation.
+Use the search field at the top of this page, navigate through topics with the tree on the left or see the links below.
+
+TIP: If you need more help please xref:contact.adoc[get in touch with us].
+
+== Documentation Links
+
+Business::
+[cols=",",options="header"]
+|===
+|Link
+|Content
+
+|https://handbook.vshn.ch
+|The VSHN Company Handbook.
+
+|https://products.docs.vshn.ch
+|VSHN Product Documentation.
+
+|https://legal.docs.vshn.ch
+|VSHN Legal Docs like GTC, SLA, NDA and others.
+|===
+
+Technical::
+[cols=",",options="header"]
+|===
+|Link
+|Content
+
+|https://docs.appuio.ch
+|APPUiO Public Platform Documentation.
+
+|https://control.docs.vshn.ch
+|VSHN Portal User Documentation.
+
+|https://syn.tools
+|Project Syn Tools Documentation.
+
+|https://k8up.io
+|K8up (Kubernetes Backup Operator) Documentation.
+|===
