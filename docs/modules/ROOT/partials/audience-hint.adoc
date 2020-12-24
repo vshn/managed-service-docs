@@ -1,0 +1,15 @@
+ifeval::["{page_audience}" == "enduser"]
+:page-audience-enduser:
+endif::[]
+ifeval::["{page_audience}" == "vshneer"]
+:page-audience-vshneer:
+endif::[]
+ifeval::["{page_audience}" == "enduser_and_vshneer"]
+:page-audience-both:
+endif::[]
+
+[sidebar]
+*Intended audience*:
+ifdef::page-audience-enduser[icon:users[] End User]
+ifdef::page-audience-vshneer[icon:users-cog[] VSHNeer]
+ifdef::page-audience-both[icon:users[] End User and icon:users-cog[] VSHNeer]

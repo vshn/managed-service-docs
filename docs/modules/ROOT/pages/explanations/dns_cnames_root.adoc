@@ -1,4 +1,7 @@
 = DNS CNAMEs on Root of Domain
+:page_audience: enduser_and_vshneer
+
+include::partial$audience-hint.adoc[]
 
 NOTE: Applies to customers with a managed DNS service from VSHN
 
