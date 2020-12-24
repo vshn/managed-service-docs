@@ -9,4 +9,6 @@ Use the search field at the top of this page, navigate through topics with the t
 
 The product documentation can be found under https://products.docs.vshn.ch/products/managedservice/index.html[products.docs.vshn.ch].
 
-TIP: If you need more help please xref:kb:ROOT:contact.adoc[get in touch with us].
+If you need more help please xref:kb:ROOT:contact.adoc[get in touch with us].
+
+TIP: Contributions to the documentation are welcome. Just click on btn:[Edit this Page] top-right or head over to https://github.com/vshn/managed-service-docs[GitHub] where the content source is stored.
