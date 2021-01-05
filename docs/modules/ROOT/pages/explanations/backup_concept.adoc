@@ -90,9 +90,9 @@ This will output a list of all script that are run before and after the backup.
 
 For details on database backups see the following articles:
 
-* xref:restore_mysql_burp.adoc[Restore MySQL/MariaDB with BURP]
-* xref:postgresql_burp.adoc[PostgreSQL with BURP]
-* xref:mongodb_burp.adoc[MongoDB with BURP]
+* xref:how-tos/restore_mysql_burp.adoc[Restore MySQL/MariaDB with BURP]
+* xref:explanations/postgresql_burp.adoc[PostgreSQL with BURP]
+* xref:explanations/mongodb_burp.adoc[MongoDB with BURP]
 
 === Retention
 
