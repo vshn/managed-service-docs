@@ -19,7 +19,7 @@ mysql-mysql.sql.gz
 
 Backups can be re-imported with the main mysql command line client as they're SQL scripts. The following commands should be seen as examples. An actual restore procedure depends on the situation at hand (partial restore after accidental data removal or a full restore after catastrophic hardware failure).
 
-. Restore from BURP (see xref:restore_from_backup.adoc[Restore Files from Backup] for details and more options):
+. Restore from BURP (see xref:how-tos/restore_from_backup.adoc[Restore Files from Backup] for details and more options):
 +
 [source,bash]
 --
