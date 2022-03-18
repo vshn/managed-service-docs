@@ -7,7 +7,7 @@ docker_opts ?= --rm --tty --user "$$(id -u)"
 
 antora_cmd  ?= $(docker_cmd) run $(docker_opts) --volume "$${PWD}":/antora vshn/antora:2.3.3
 antora_opts ?= --cache-dir=.cache/antora
-preview_cmd ?= $(docker_cmd) run --rm --publish 35729:35729 --publish 2020:2020 --volume "${PWD}":/preview/antora vshn/antora-preview:2.3.4 --antora=docs --style=vshn
+preview_cmd ?= $(docker_cmd) run --rm --publish 35729:35729 --publish 2020:2020 --volume "${PWD}":/preview/antora vshn/antora-preview:3.0.1.1 --antora=docs --style=vshn
 
 vale_cmd ?= $(docker_cmd) run $(docker_opts) --volume "$${PWD}"/docs/modules:/pages vshn/vale:2.1.1 --minAlertLevel=error /pages
 
