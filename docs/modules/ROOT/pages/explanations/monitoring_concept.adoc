@@ -34,4 +34,4 @@ Every monitored client exports a default host object via Puppet along with a cou
 The Icinga2 monitoring is available at https://monitoring.vshn.net.
 There are customers with access to monitoring; if you'd like to have access please open a ticket at https://control.vshn.net.
 
-To log in use your user name of your username of your https://kb.vshn.ch/kb/vshn_infra_ldap.html[VSHN Account] (e.g. 'cust-flastname1') and not the email address.
+To log in use the user name of your https://kb.vshn.ch/kb/vshn_infra_ldap.html[VSHN Account] (e.g. 'cust-flastname1') and not the email address.
