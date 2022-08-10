@@ -20,6 +20,7 @@ postgres-postgres.dump
 == Restore
 
 Backups can be re-imported using https://www.postgresql.org/docs/9.5/static/app-pgrestore.html[`pg_restore`]. This part isn't automated. No example command is given as the actual restore procedure depends on the situation at hand (partial restore after accidential data removal or a full restore after catastrophic hardware destruction)
+See xref:managed-service:ROOT:how-tos/restore_postgresql_burp.adoc[Restore PostgreSQL] for short how-to.
 
 == External Links
 
