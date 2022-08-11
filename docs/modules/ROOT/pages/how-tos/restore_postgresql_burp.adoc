@@ -4,8 +4,7 @@
 
 Dump destination directory: `/var/lib/postgresql-backup`
 
-The postgresql-pre-backup script uses https://www.postgresql.org/docs/current/app-pgdump.html[pg_dump]
-to export all PostgreSQL databases in a consistent data format before every BURP run, usually once a day.
+The postgresql-pre-backup script uses https://www.postgresql.org/docs/current/app-pgdump.html[pg_dump] to export all PostgreSQL databases in a consistent data format before every BURP run, usually once a day.
 The destination files are named after the database name.
 
 The default dump format used is "custom", it may be overriden by DUMP_FORMAT in `/etc/default/postgresql-pre-backup`
