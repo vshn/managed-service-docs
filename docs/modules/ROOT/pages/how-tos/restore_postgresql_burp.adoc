@@ -32,8 +32,7 @@ $ sudo burp -a r -d /tmp/restore -r ^/var/lib/postgresql-backup/
 $ sudo chown -R postgres:postgres /tmp/restore
 --
 
-NOTE: If the service runs on an encrypted disk, ensure you use a restore location
-that is on an encrypted disk as well.
+IMPORTANT: If the service runs on an encrypted disk, ensure you use a restore location that is on an encrypted disk as well.
 
 . Load backup (potentially destructive!):
 +
