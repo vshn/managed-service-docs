@@ -34,7 +34,7 @@ $ sudo chown -R postgres:postgres /tmp/restore
 
 IMPORTANT: If the service runs on an encrypted disk, ensure you use a restore location that is on an encrypted disk as well.
 
-. Load backup (potentially destructive!):
+. Load backup in existing database (potentially destructive!):
 +
 [source,bash]
 --
@@ -46,6 +46,14 @@ $ sudo -u postgres pg_restore ~/restore/db.dump -d db
 [source,bash]
 --
 $ sudo -u postgres pg_restore ~/restore/db.dump -d alternative_db --create --clean
+--
+
+. **Alternative** you can first rename the DB and later restore the dump into a new DB with the old name (destructive!):
++
+[source,bash]
+--
+$ sudo -u postgres psql -c 'ALTER DATABASE db RENAME TO dbbak'
+$ sudo -u postgres pg_restore ~/restore/db.dump -d db --create --clean
 --
 
 == External links
