@@ -1,0 +1,69 @@
+= Restore PostgreSQL with BURP
+
+== Backup
+
+Dump destination directory: `/var/lib/postgresql-backup`
+
+The postgresql-pre-backup script uses https://www.postgresql.org/docs/current/app-pgdump.html[pg_dump] to export all PostgreSQL databases in a consistent data format before every BURP run, usually once a day.
+The destination files are named after the database name.
+
+The default dump format used is "custom", it may be overriden by DUMP_FORMAT in `/etc/default/postgresql-pre-backup`
+
+Example file list:
+
+[source,bash]
+--
+confluence.dump
+postgres.dump
+--
+
+== Restore
+
+Database dumps created in pg_dump custom format have to be processed using the pg_restore tool. The application generally operates in two modes: by directly importing the database dump via `-d database_name` parameter, or by exporting the dump to human readable sql text format by specifying the `-f output.sql` parameter. This file can then be altered with text editor and imported via psql tool.
+
+IMPORTANT: In the case of the direct restore, the connection parameter `-d database_name` is handled differently depending on whether the `--create/-C` parameter is used. 
+If the `--create` parameter is set, the database specified in `-d database_name` is only used to connect to the database cluster, while all the restore operations are made to the database for which the dump was created for.
+If the `--create` parameter is not defined, the restore operations will be applied to the database defined to the `-d database_name`, allowing us to restore the dump into different database.
+
+The following commands should be seen as examples. An actual restore procedure depends on the situation at hand (partial restore after accidental data removal or a full restore after catastrophic hardware failure).
+
+NOTE: The operations done with pg_restore will only restore the database schema and the underlying data, but no roles will be recreated. Roles are supposed to be configured via puppet/hieradata.
+
+. Restore from BURP (see xref:how-tos/restore_from_backup.adoc[Restore Files from Backup] for details and more options):
++
+[source,bash]
+--
+$ sudo burp -a r -d /tmp/restore -r ^/var/lib/postgresql-backup/
+$ sudo chown -R postgres:postgres /tmp/restore
+--
+
+IMPORTANT: If the service runs on an encrypted disk, ensure you use a restore location that is on an encrypted disk as well.
+
+NOTE: The database being imported into has to be created in advance. The `--create` parameter only operates on the existing database that appears in the dump file.
+
+. Load backup into `-d db` database (tables will not be recreated, potentially destructive as the data could be re-imported!):
++
+[source,bash]
+--
+$ sudo -u postgres pg_restore ~/restore/db.dump -d db
+--
+
+. Load backup into `-d db` database but first drop the existing objects (will drop existing tables - destructive!):
++
+[source,bash]
+--
+$ sudo -u postgres pg_restore ~/restore/db.dump --clean -d db
+--
+
+. Load backup into existing database but first drop the database (destructive!). In this case the different connection database has to be supplied via `-d connect_db` parameter (default postgres database can be used):
++
+[source,bash]
+--
+$ sudo -u postgres pg_restore ~/restore/db.dump --clean --create -d postgres
+--
+
+== External links
+
+* https://www.postgresql.org/docs/current/backup-dump.html[Backup and restore in PostgreSQL documentation]
+* https://www.postgresql.org/docs/current/app-pgrestore.html[pg_restore command in PostgreSQL documentation]
+* https://www.postgresql.org/docs/current/app-psql.html
