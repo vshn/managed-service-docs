@@ -41,7 +41,7 @@ profile_example (
 
 [NOTE]
 ====
-- Implement all parameters as outline above including their default values. This ensures an unified interface across all puppet profiles.
+- Implement all parameters as outlined above including their default values. This ensures an unified interface across all puppet profiles.
 - Set the `product_id` to the corresponding `Metered Billing ID` of the product in https://central.vshn.ch/[Odoo]
 ====
 
