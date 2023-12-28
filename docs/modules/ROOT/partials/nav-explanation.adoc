@@ -12,3 +12,5 @@
 
 * Monitoring
 ** xref:managed-service:ROOT:explanations/monitoring_concept.adoc[Monitoring Concept]
+
+* xref:managed-service:ROOT:explanations/metered_billing.adoc[Metered Billing]
