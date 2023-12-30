@@ -11,7 +11,7 @@ More information regarding the metered billing at VSHN can be found at https://d
 
 The metered usage is leveraging the existing PuppetDB to determine billed services and components. Puppet profiles instantiate a defined resource type https://git.vshn.net/vshn-puppet/puppet-billing[Billing^] which defines what unit and Odoo product ID should be used and to which sales order the usage of a specifc service should be reported.
 
-The https://git.vshn.net/vshn-puppet/puppet-odoo-metered-billing-adapter[Puppet-Odoo metered billing adapter^] will periodically query the PuppetDB for all `Billing` resources and submit them to VSHN central's https://docs.central.vshn.ch/metered-billing-data-ingestion.html[usage data ingestion endpoint^]
+The https://git.vshn.net/vshn-puppet/odoo-metered-billing-reporting[Puppet-Odoo metered billing reporting^] will periodically query the PuppetDB for all `Billing` resources and submit them to VSHN central's https://docs.central.vshn.ch/metered-billing-data-ingestion.html[usage data ingestion endpoint^]
 
 === Enable metered billing in a Puppet profile
 
