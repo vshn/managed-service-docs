@@ -129,5 +129,8 @@ $ egrep '^server\s+=' /etc/burp/burp.conf
 
 === Encryption
 
-* All data is encrypted (using Blowfish algorithm) on the client and the encrypted data is then sent to the backup server
+* All data is encrypted on the client and the encrypted data is then sent to the backup server
+** The used encryption algorithm depends on the burp and openssl version:
+*** Burp (>= 3.0.0) on Ubuntu LTS 22.04 and newer: AES-CBC-256
+*** Burp (< 3.0.0) on Ubuntu LTS 20.04: BLOWFISH
 * The data transport between the client and server is done over a TLS-encrypted connection
