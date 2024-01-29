@@ -79,3 +79,8 @@ billing::reporting: false
 # disable for a specific profile
 profile_specialservice::billing_reporting: false
 --
+
+== Deployment
+
+The reporting is deployed using the https://git.vshn.net/vshn-puppet/puppet-billing/-/blob/master/manifests/reporting.pp[billing::reporting^] profile, multiple instances (f.e. one per Odoo environment) can be deployed in parallel.
+Currently the billing reporting is deployed on `management2.corp.vshn.net`.
