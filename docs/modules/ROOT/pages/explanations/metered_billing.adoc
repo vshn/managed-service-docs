@@ -1,0 +1,86 @@
+= Metered Billing
+:page_audience: vshneer
+
+include::partial$audience-hint.adoc[]
+
+This document describes how Puppet Managed Services report data to Odoo for service billing based on the measured usage.
+
+More information regarding the metered billing at VSHN can be found at https://docs.central.vshn.ch/metered-billing.html[docs.central.vshn.ch^].
+
+== Summary
+
+The metered usage is leveraging the existing PuppetDB to determine billed services and components. Puppet profiles instantiate a defined resource type https://git.vshn.net/vshn-puppet/puppet-billing[Billing^] which defines what unit and Odoo product ID should be used and to which sales order the usage of a specifc service should be reported.
+
+The https://git.vshn.net/vshn-puppet/odoo-metered-billing-reporting[Puppet-Odoo metered billing reporting^] will periodically query the PuppetDB for all `Billing` resources and submit them to VSHN central's https://docs.central.vshn.ch/metered-billing-data-ingestion.html[usage data ingestion endpoint^]
+
+=== Enable metered billing in a Puppet profile
+
+To enable metered billing for a Puppet profile, that profile needs to define a billing resource:
+
+[source,puppet]
+--
+profile_example (
+    ...,
+    Billing::Options  $billing_custom_options = {},
+    Optional[Boolean] $billing_reporting = undef,
+    Optional[String]  $billing_sales_order_id = undef,
+    ...,
+){
+
+  if $billing_reporting or $billing_reporting =~ Undef {
+    billing { "${trusted['certname']}-${title}":
+      product_id     => 'managed-service-...',
+      reporting      => $billing_reporting,
+      sales_order_id => $billing_sales_order_id,
+      *              => $billing_custom_options,
+    }
+  }
+
+}
+--
+
+[NOTE]
+====
+- Implement all parameters as outlined above including their default values. This ensures an unified interface across all puppet profiles.
+- Set the `product_id` to the corresponding `Metered Billing ID` of the product in https://central.vshn.ch/[Odoo]
+====
+
+=== Set billing information in Hiera
+
+For a resource to be processed in the metered billing, it needs to know to what sales order it should be reported. The `sales_order_id` needs to be configured in hiera:
+
+[source,yaml]
+--
+billing::sales_order_id: 'Sxxxxx'
+--
+
+Alternatively, if different profiles should report to different sales orders, the `sales_order_id` may be overridden on a per-profile basis:
+
+[source,yaml]
+--
+billing::sales_order_id: 'Syyyyy'
+profile_specialservice::billing_sales_order_id: 'Szzzzz'
+--
+
+[NOTE]
+====
+Check with https://handbook.vshn.ch/domain_sales_account_management.html[Sales & Account Management^] for the correct sales order to use for a specific project/service
+====
+
+=== Disable metered billing in Hiera
+
+Metered billing can be disabled for a specific profile or for a specific server or project in hiera
+
+[source,yaml]
+--
+# disable billing for all services
+billing::reporting: false
+
+# disable for a specific profile
+profile_specialservice::billing_reporting: false
+--
+
+== Deployment
+
+The reporting is deployed using the https://git.vshn.net/vshn-puppet/puppet-billing/-/blob/master/manifests/reporting.pp[billing::reporting^] profile, multiple instances (f.e. one per Odoo environment) can be deployed in parallel.
+Currently the billing reporting is deployed on `management2.corp.vshn.net`.
