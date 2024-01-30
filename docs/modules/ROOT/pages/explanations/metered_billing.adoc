@@ -27,6 +27,9 @@ profile_example (
     ...,
 ){
 
+  # in the profile, only suppress reporting if it is set to false explicitly,
+  # otherwise rely on the the global reporting configuration evaluated in the
+  # billing define type
   if $billing_reporting or $billing_reporting =~ Undef {
     billing { "${trusted['certname']}-${title}":
       product_id     => 'managed-service-...',
