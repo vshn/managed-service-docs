@@ -48,6 +48,31 @@ profile_example (
 - Set the `product_id` to the corresponding `Metered Billing ID` of the product in https://central.vshn.ch/[Odoo]
 ====
 
+==== Product bundles
+
+Some Puppet profiles may bundle multiple profiles, meaning a puppet profile may replace other
+profiles from a billing point of view.
+
+Such profiles may be passed to `bundled_products` of the billing type:
+[source,puppet]
+--
+billing { "${trusted['certname']}-${title}":
+  product_id       => 'managed-service-graylog',
+  bundled_products => [
+    'managed-service-elasticsearch',
+    'managed-service-mongodb',
+    'managed-service-nginx',
+  ],
+  ...
+}
+--
+
+[NOTE]
+====
+- Products listed as `bundled_products` won't be reported to metered billing
+  for the node.
+====
+
 === Set billing information in Hiera
 
 For a resource to be processed in the metered billing, it needs to know to what sales order it should be reported. The `sales_order_id` needs to be configured in hiera:
